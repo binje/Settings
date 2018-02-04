@@ -12,7 +12,10 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'fatih/vim-go'
 
+Plugin 'scrooloose/nerdtree'
+
 call vundle#end()
+
 filetype plugin indent on
 
 
@@ -22,6 +25,15 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+let g:go_fmt_command = "goimports"
+
+
+"Open go doc in vertical window, horizontal, or tab
+au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
+au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
+
 syntax on
 set showmatch
 set hlsearch
@@ -41,14 +53,10 @@ set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-func GitGrep(...)
-  let save = &grepprg
-  set grepprg=git\ grep\ -n\ $*
-  let s = 'grep'
-  for i in a:000
-    let s = s . ' ' . i
-  endfor
-  exe s
-  let &grepprg = save
-endfun
-command -nargs=? G call GitGrep(<f-args>)
+"autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+colorscheme peachpuff
+
+" Opening and closing braces
+imap <C-F> {<CR>}<C-O>O
