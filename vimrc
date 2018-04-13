@@ -14,6 +14,11 @@ Plugin 'fatih/vim-go'
 
 Plugin 'scrooloose/nerdtree'
 
+" typescript
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'Shougo/vimproc.vim'
+
 call vundle#end()
 
 filetype plugin indent on
